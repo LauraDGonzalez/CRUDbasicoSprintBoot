@@ -5,7 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity // Anotacion entidad, es el objeto que represent la base de datos
 public class Teacher {
     /**
      * nombres name
@@ -15,23 +15,24 @@ public class Teacher {
      * materia course
      *
       */
-    @Id
-    private Integer id;
+    @Id // Clave de la clase
+    private Integer id; //De tipo envolvente
 
-    @Column(name = "NAME_TEACHER", nullable = false, insertable = false, updatable = false)
+    @Column(name = "NAME_TEACHER", nullable = false, insertable = false, updatable = false) // nullable no admite campo nullo
     private String name, lasName, course;
     private Integer  age;
-    public Teacher(Integer id, String name, String lasName, String course, Integer age){
+    public Teacher(Integer id, String name, String lasName, String course, Integer age){ // Instancia de la clase
         this.id = id;
         this.name = name;
         this.lasName = lasName;
         this.course = course;
         this.age = age;
     }
-    public Teacher(){
+    public Teacher(){ // Instancia vacia
 
     }
 
+    // Getter y setter
     public Integer getId() {
         return id;
     }
@@ -72,6 +73,8 @@ public class Teacher {
         this.age = age;
     }
 
+
+    // Objeto de tipo personaDTO que tiene id y nombre
     public Teacher(TeacherDTO teacherDTO){
         this.id = teacherDTO.getId();
         this.name = teacherDTO.getName();

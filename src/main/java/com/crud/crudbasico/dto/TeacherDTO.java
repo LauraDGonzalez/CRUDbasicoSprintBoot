@@ -1,6 +1,7 @@
 package com.crud.crudbasico.dto;
 import com.crud.crudbasico.repository.entity.Teacher;
 
+// Los DTO proteger los datos de la BD y crear un medio de transporte seguiro sin necesidad de acceder a ellos directamente
 public class TeacherDTO {
     private Integer id, age;
     private String name, lasName, course;
