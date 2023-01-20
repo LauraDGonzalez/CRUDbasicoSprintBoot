@@ -25,7 +25,7 @@ public class TeacherServiceImpl implements IProfesorService { // Heredando de la
 
     // Con el override estamos implementando los metodos de la interface
     @Override
-    public void save(TeacherDTO teacher) {
+    public void save(TeacherDTO teacher) { // Crear un elemento en la BD
        if (!repository.existsById(teacher.getId())){ // si la persona no existe guarda el
            repository.save(new Teacher(teacher));
        }
@@ -41,13 +41,28 @@ public class TeacherServiceImpl implements IProfesorService { // Heredando de la
     }
 
     @Override
-    public String update(TeacherDTO teacher) {
+    public String update(TeacherDTO teacher) { // Permite actualizar un elemento de la BD
+
         Optional<Teacher> value = repository.findById(teacher.getId());
-        if(value.isPresent()){ // Si existe ese valor permite la actualizacion
+        if (value.isPresent()) { // Si existe ese valor permite la actualizacion
             repository.save(new Teacher(teacher));
-            return "Update";
-        }else {
+            return "Se ha actualizado exitosamente";
+        } else {
             return "No exist";
         }
     }
+
+    @Override
+    public Boolean delete(Integer id) {
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+            return true;
+        } else{
+            return false;
+        }
+
+
+    }
+
+
 }

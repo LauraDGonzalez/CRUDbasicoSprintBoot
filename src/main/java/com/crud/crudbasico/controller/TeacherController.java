@@ -16,22 +16,28 @@ public class TeacherController {
         this.iProfesorService = iProfesorService;
     }
 
-    @GetMapping()
+    @GetMapping() // Permite obtener los datos
     public ResponseEntity<?> getTeacherAll(){ // ResponseEntity responde en formato json para la aplicacion web
         return ResponseEntity // contiene el status de la respuesta, si salio bien o mal
                 .ok()  // Siempre va a responder ok
                 .body(iProfesorService.getAll()); // en el cuerpo si se encuentr en la bd persona se va a devolver la lista de personas encontradas
     }
-    @PostMapping()
+    @PostMapping()// Permite insertar en la BD
     public ResponseEntity<?>
     saveTeacher(@RequestBody TeacherDTO teacher){ // @RequestBody  que está dentro del request
         iProfesorService.save(teacher);// le enviamos la entidad
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping() // Para actualizar
+    @PutMapping() // Permite  actualizar
     public ResponseEntity<?> // ? respuesta de cualquier tipo tengo entendido
     updateTeacher(@RequestBody TeacherDTO teacher){  // @RequestBody  que está dentro del request
         return new ResponseEntity<>( iProfesorService.update(teacher), HttpStatus.CREATED); // HttpStatus.CREATED es el estatus que va a mostrar
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?>
+     deleteTeacher(@PathVariable Integer id){
+        return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(iProfesorService.delete(id));
     }
 }

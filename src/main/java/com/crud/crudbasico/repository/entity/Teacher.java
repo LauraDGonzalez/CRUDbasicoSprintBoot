@@ -18,13 +18,16 @@ public class Teacher {
     @Id // Clave de la clase
     private Integer id; //De tipo envolvente
 
-    @Column(name = "NAME_TEACHER", nullable = false, insertable = false, updatable = false) // nullable no admite campo nullo
-    private String name, lasName, course;
+    @Column(name = "NAME_TEACHER", nullable = false) // nullable no admite campo nulo
+    private String name; // Los atributos de la clase o de la entidad
+    private String lastName;
+    private String course;
     private Integer  age;
-    public Teacher(Integer id, String name, String lasName, String course, Integer age){ // Instancia de la clase
+
+    public Teacher(Integer id, String name, String lastName, String course, Integer age){ // Instancia de la clase
         this.id = id;
         this.name = name;
-        this.lasName = lasName;
+        this.lastName = lastName;
         this.course = course;
         this.age = age;
     }
@@ -49,12 +52,12 @@ public class Teacher {
         this.name = name;
     }
 
-    public String getLasName() {
-        return lasName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLasName(String lasName) {
-        this.lasName = lasName;
+    public void setLastName(String lasName) {
+        this.lastName = lasName;
     }
 
     public String getCourse() {
@@ -74,11 +77,11 @@ public class Teacher {
     }
 
 
-    // Objeto de tipo personaDTO que tiene id y nombre
+    // Objeto de tipo TeacherDTO que tiene id y nombre y otros
     public Teacher(TeacherDTO teacherDTO){
         this.id = teacherDTO.getId();
         this.name = teacherDTO.getName();
-        this.lasName = teacherDTO.getLasName();
+        this.lastName = teacherDTO.getLastName();
         this.course = teacherDTO.getCourse();
         this.age = teacherDTO.getAge();
     }

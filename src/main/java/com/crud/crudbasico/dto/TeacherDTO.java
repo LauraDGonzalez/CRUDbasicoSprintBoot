@@ -3,8 +3,13 @@ import com.crud.crudbasico.repository.entity.Teacher;
 
 // Los DTO proteger los datos de la BD y crear un medio de transporte seguiro sin necesidad de acceder a ellos directamente
 public class TeacherDTO {
-    private Integer id, age;
-    private String name, lasName, course;
+    private Integer id;
+    private Integer age;
+
+    private String name;
+    private String lastName;
+    private String course;
+
 
     public TeacherDTO(){
 
@@ -34,12 +39,12 @@ public class TeacherDTO {
         this.name = name;
     }
 
-    public String getLasName() {
-        return lasName;
+    public String getLastName() {
+        return lastName;
     }
 
     public void setLasName(String lasName) {
-        this.lasName = lasName;
+        this.lastName = lasName;
     }
 
     public String getCourse() {
@@ -53,7 +58,7 @@ public class TeacherDTO {
     public TeacherDTO(Teacher teacher){
         this.id = teacher.getId();
         this.name = teacher.getName();
-        this.lasName = teacher.getLasName();
+        this.lastName = teacher.getLastName();
         this.course = teacher.getCourse();
         this.age = teacher.getAge();
 

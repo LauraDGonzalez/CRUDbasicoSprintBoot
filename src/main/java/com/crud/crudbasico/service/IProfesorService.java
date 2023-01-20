@@ -9,5 +9,10 @@ public interface IProfesorService {
     void save(TeacherDTO teacher); // Permite crear un nueva entidad para eso le enviamos una entidad al repositorio
     List<TeacherDTO> getAll(); // Va a traer una lista de todas las personas que se encuentran en la base de datos
 
-    String update(TeacherDTO teacher);
+    String update(TeacherDTO teacher); // Método actualizar
+
+    Boolean delete(Integer id);
+
+     // Método eliminar, debe recibir el id, buscar si existe y eliminar
+
 }
