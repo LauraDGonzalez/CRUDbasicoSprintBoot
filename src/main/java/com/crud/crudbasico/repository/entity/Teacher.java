@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity // Anotacion entidad, es el objeto que represent la base de datos
+// entidad es una tabla de la base de datos
 public class Teacher {
     /**
      * nombres name
@@ -13,26 +14,30 @@ public class Teacher {
      * cedula  id
      * edad age
      * materia course
-     *
-      */
+     */
     @Id // Clave de la clase
     private Integer id; //De tipo envolvente
 
     @Column(name = "NAME_TEACHER", nullable = false) // nullable no admite campo nulo
     private String name; // Los atributos de la clase o de la entidad
     private String lastName;
-    private String course;
-    private Integer  age;
+    private String course; // TODO El curso debe ser una lista
+    private Integer age;
 
-    public Teacher(Integer id, String name, String lastName, String course, Integer age){ // Instancia de la clase
+    // TODO cedula, nombre y apellido son campos obligatorios
+    public Teacher(Integer id, String name, String lastName, String course, Integer age) { // Constructor de la clase
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.course = course;
         this.age = age;
     }
-    public Teacher(){ // Instancia vacia
 
+    public Teacher(Integer id) { // Instancia vacia
+        this.id = id;
+    }
+
+    public Teacher() {
     }
 
     // Getter y setter
@@ -78,7 +83,8 @@ public class Teacher {
 
 
     // Objeto de tipo TeacherDTO que tiene id y nombre y otros
-    public Teacher(TeacherDTO teacherDTO){
+    // DTO para que no conozcan lo que hay en la capa de datos
+    public Teacher(TeacherDTO teacherDTO) {
         this.id = teacherDTO.getId();
         this.name = teacherDTO.getName();
         this.lastName = teacherDTO.getLastName();

@@ -5,15 +5,19 @@ import com.crud.crudbasico.repository.entity.Teacher;
 public class TeacherDTO {
     private Integer id;
     private Integer age;
-
     private String name;
     private String lastName;
-    private String course;
+    private String course; // todo esta materia se debe convertir en una relacion que es una lista
 
 
     public TeacherDTO(){
 
     }
+    public TeacherDTO(Integer id){
+        this.id = id;
+
+    }
+
 
     public Integer getId() {
         return id;

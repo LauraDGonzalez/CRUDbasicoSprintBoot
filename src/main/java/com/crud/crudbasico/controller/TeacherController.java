@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController // Simplifica la implentacion del controlador
 @RequestMapping("/teacher") //  La URI de asignación de ruta, declaramos la URI para acceder al recurso, a traves de esta podemos acceder a los metodos de persona
 public class TeacherController {
-    private IProfesorService iProfesorService; // Se crea una implementacion de IPersonaRepository que es la interface para realizar el CRUD generico
+
+    // Siempre creamos las instancias de las interfaces no de las clases por temas de dependencias
+    private final IProfesorService iProfesorService; // Se crea una implementacion de IPersonaRepository que es la interface para realizar el CRUD generico
 
     // Inyeccion de dependencias a traves del constructor
     public TeacherController (IProfesorService iProfesorService){
@@ -35,9 +37,9 @@ public class TeacherController {
         return new ResponseEntity<>( iProfesorService.update(teacher), HttpStatus.CREATED); // HttpStatus.CREATED es el estatus que va a mostrar
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping // Permite eliminar
     public ResponseEntity<?>
-     deleteTeacher(@PathVariable Integer id){
-        return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(iProfesorService.delete(id));
+     deleteTeacher(@RequestBody TeacherDTO teacherDTO){ //TODO acá es teacher DTO o teacher?
+        return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(iProfesorService.delete(teacherDTO.getId()));
     }
 }

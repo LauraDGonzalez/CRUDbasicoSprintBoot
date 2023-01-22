@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 // Esta es la implementacion de la interface en esta clase
 
 
-@Service // Indico que la clase va a ser un servicio
+@Service // Indico que la clase va a ser un servicio, que es un servicio y esta disponible para que cualquiera lo pueda usar
 public class TeacherServiceImpl implements IProfesorService { // Heredando de la interface IPersonaService
-
+// La clase repository es la que sabe guardar por eso se crea una instancia
     private  final IteacherRepository repository; // Se crea una implementacion de IPersonaRepository que es la interface para realizar el CRUD generico
 
     // Inyeccion de dependencias a traves del constructor
@@ -34,10 +34,11 @@ public class TeacherServiceImpl implements IProfesorService { // Heredando de la
 
     @Override
     public List<TeacherDTO> getAll() { // Para obtener una lista de los elementos de la entidad
-        List<Teacher> list = (List<Teacher>) repository.findAll(); //
+        List<Teacher> list = (List<Teacher>) repository.findAll(); // repository.findAll(); Trae todas las personas que hay en la tabla
+        // List<Teacher>) esta lista tiene todos los datos de la tabla es como si fuera castear
         return list.stream() // Flujo de trabajo para listar
-                .map(TeacherDTO::new)
-                .collect(Collectors.toList());
+                .map(TeacherDTO::new) // .map Cambia la operacion que hay en el objeto, crea una nueva entidad para cada TeacherDTO, por cada elemento la pasa una vez
+                .collect(Collectors.toList()); // Esto se lo devuelve a la capa controlador
     }
 
     @Override
@@ -46,9 +47,9 @@ public class TeacherServiceImpl implements IProfesorService { // Heredando de la
         Optional<Teacher> value = repository.findById(teacher.getId());
         if (value.isPresent()) { // Si existe ese valor permite la actualizacion
             repository.save(new Teacher(teacher));
-            return "Se ha actualizado exitosamente";
+            return "Se ha actualizado exitosamente el profesor";
         } else {
-            return "No exist";
+            return "No exist ese profesor";
         }
     }
 
