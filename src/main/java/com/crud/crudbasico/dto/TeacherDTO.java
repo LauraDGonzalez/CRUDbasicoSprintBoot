@@ -7,7 +7,7 @@ public class TeacherDTO {
     private Integer age;
     private String name;
     private String lastName;
-    private String course; // todo esta materia se debe convertir en una relacion que es una lista
+
 
 
     public TeacherDTO(){
@@ -51,19 +51,13 @@ public class TeacherDTO {
         this.lastName = lasName;
     }
 
-    public String getCourse() {
-        return course;
-    }
 
-    public void setCourse(String course) {
-        this.course = course;
-    }
 
     public TeacherDTO(Teacher teacher){
         this.id = teacher.getId();
         this.name = teacher.getName();
         this.lastName = teacher.getLastName();
-        this.course = teacher.getCourse();
+
         this.age = teacher.getAge();
 
 

@@ -3,7 +3,7 @@ package com.crud.crudbasico.dto;
 import com.crud.crudbasico.repository.entity.Course;
 import com.crud.crudbasico.repository.entity.Student;
 
-public class StudentDTO {
+public class StudentPruebaDTO {
 
     private Integer id;
     private String name;
@@ -12,7 +12,7 @@ public class StudentDTO {
     private Integer age;
     private Course course;
 
-    public StudentDTO() {
+    public StudentPruebaDTO() {
 
     }
 
@@ -64,16 +64,16 @@ public class StudentDTO {
         this.age = age;
     }
 
-    public StudentDTO(Student student){
+
+    public StudentPruebaDTO(Student student){
         this.age = student.getId();
         this.name = student.getName();
         this.id = student.getId();
         this.lastName = student.getLastName();
         this.dateOfBirth = student.getDateOfBirth();
-
+      this.course = student.getCourse();
+        System.out.println("Este es el curso: "+ student.getCourse());
 
 
     }
 }
-
-

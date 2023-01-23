@@ -1,16 +1,21 @@
 package com.crud.crudbasico.dto;
 
 import com.crud.crudbasico.repository.entity.Course;
+import com.crud.crudbasico.repository.entity.Student;
+import com.crud.crudbasico.repository.entity.Teacher;
+
+import java.util.List;
 
 
 public class CourseDTO {
 
     private Integer id; // Este es el id de la materia, no lo dice en el texto
-    private String student; // TODO esta es la relacion, debe ser una lista
-    private String teacher; // TODO esta es la relacion, debe ser una lista
+
+    private Teacher teacher; // TODO esta es la relacion, debe ser una lista
     private Integer schedule; // Este es el horario del curso
     private String topic;  // Este es el tema del curso
 
+    List<Student> studentList;
     public CourseDTO() {
 
     }
@@ -23,20 +28,22 @@ public class CourseDTO {
         this.id = id;
     }
 
-    public String getStudent() {
-        return student;
-    }
 
-    public void setStudent(String student) {
-        this.student = student;
-    }
 
-    public String getTeacher() {
+    public Teacher getTeacher() {
         return teacher;
     }
 
-    public void setTeacher(String teacher) {
+    public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
     }
 
     public Integer getSchedule() {
@@ -56,11 +63,12 @@ public class CourseDTO {
     }
 
     public CourseDTO(Course course){
-        this.student = course.getStudent();
+
         this.id = course.getId();
         this.schedule = course.getSchedule();
-        //this.teacher = course .getTeacher();
+        this.teacher = course.getTeacher();
         this.topic = course.getTopic();
+       this.studentList = course.getStudentList();
 
 
     }

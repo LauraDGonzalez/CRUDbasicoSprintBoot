@@ -1,6 +1,7 @@
 package com.crud.crudbasico.service.imple;
 
 import com.crud.crudbasico.dto.StudentDTO;
+import com.crud.crudbasico.dto.StudentPruebaDTO;
 import com.crud.crudbasico.repository.IStudentRepository;
 import com.crud.crudbasico.repository.entity.Student;
 import com.crud.crudbasico.service.ICourseService;
@@ -35,10 +36,11 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public List<StudentDTO> getAll() {
+    public List<StudentPruebaDTO> getAll() {
         List<Student> list = (List<Student>) repository.findAll();
+        System.out.println(list.get(0).getCourse());
         return list.stream() // TODO estudiar los flujos de trabajo
-                .map(StudentDTO::new)
+                .map(StudentPruebaDTO::new)
                 .collect(Collectors.toList());
     }
 

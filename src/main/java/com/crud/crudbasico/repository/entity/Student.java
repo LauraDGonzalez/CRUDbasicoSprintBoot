@@ -3,9 +3,7 @@ package com.crud.crudbasico.repository.entity;
 
 import com.crud.crudbasico.dto.CourseDTO;
 import com.crud.crudbasico.dto.StudentDTO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,18 +31,24 @@ public class Student {
     private Integer age; //  todo debe ser un dato calculado a partir de la fecha
     // private List<CourseDTO> courseList = new List<CourseDTO>(); // todo esto esta mal instanciado
 // TODO todos los campos del alumno son obligatorios
+    @ManyToOne() // Relación de muchos cursos a un solo profesor
+    @JoinColumn(name = "student_course")
+    Course course; // = new ArrayList<Teacher>();
 
-
-    public Student(Integer id, String name, String lastName, String dateOfBirth, Integer age) {
+    public Student(Integer id, String name, String lastName, String dateOfBirth, Integer age, Course course) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.age = age;
+        this.course = course;
     }
 
     public Student() {
     }
+
+
+
 
     public Integer getId() {
         return id;
@@ -64,6 +68,14 @@ public class Student {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public void setLastName(String lastName) {
@@ -92,6 +104,7 @@ public class Student {
         this.age = studentDTO.getAge();
         this.name = studentDTO.getName();
         this.lastName = studentDTO.getLastName();
+        this.course = studentDTO.getCourse();
 
     }
 }

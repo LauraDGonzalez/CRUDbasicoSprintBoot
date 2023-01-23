@@ -31,9 +31,14 @@ public class CourseServiceImpl implements ICourseService {
 
     @Override
     public List<CourseDTO> getAll() {
-        List<Course> list = (List<Course>) repository.findAll(); // repository.findAll(); Trae todas las personas que hay en la tabla
+        List<Course> list =  repository.findAll(); // repository.findAll(); Trae todas las personas que hay en la tabla
+
+        System.out.println(list.get(0).getStudentList());
+        System.out.println(list.get(0).getTeacher());
         // List<Teacher>) esta lista tiene todos los datos de la tabla es como si fuera castear
-        return list.stream() // Flujo de trabajo para listar
+        System.out.println( list.toString());
+
+       return list.stream() // Flujo de trabajo para listar
                 .map(CourseDTO::new) // .map Cambia la operacion que hay en el objeto, crea una nueva entidad para cada TeacherDTO, por cada elemento la pasa una vez
                 .collect(Collectors.toList());
     }

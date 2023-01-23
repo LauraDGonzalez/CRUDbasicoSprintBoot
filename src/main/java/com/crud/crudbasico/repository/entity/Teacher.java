@@ -21,16 +21,26 @@ public class Teacher {
     @Column(name = "NAME_TEACHER", nullable = false) // nullable no admite campo nulo
     private String name; // Los atributos de la clase o de la entidad
     private String lastName;
-    private String course; // TODO El curso debe ser una lista
+
     private Integer age;
 
     // TODO cedula, nombre y apellido son campos obligatorios
-    public Teacher(Integer id, String name, String lastName, String course, Integer age) { // Constructor de la clase
+    public Teacher(Integer id, String name, String lastName, Integer age) { // Constructor de la clase
         this.id = id;
         this.name = name;
         this.lastName = lastName;
-        this.course = course;
+
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
     }
 
     public Teacher(Integer id) { // Instancia vacia
@@ -65,13 +75,7 @@ public class Teacher {
         this.lastName = lasName;
     }
 
-    public String getCourse() {
-        return course;
-    }
 
-    public void setCourse(String course) {
-        this.course = course;
-    }
 
     public Integer getAge() {
         return age;
@@ -88,7 +92,7 @@ public class Teacher {
         this.id = teacherDTO.getId();
         this.name = teacherDTO.getName();
         this.lastName = teacherDTO.getLastName();
-        this.course = teacherDTO.getCourse();
+
         this.age = teacherDTO.getAge();
     }
 }
